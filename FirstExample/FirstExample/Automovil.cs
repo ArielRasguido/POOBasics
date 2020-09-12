@@ -9,36 +9,42 @@ namespace FirstExample
     public class Automovil : Vehiculo, IVehiculoTerrrestre
     {
         private int _kilometraje;
-        public string Marca { get; set; }
-        public string Modelo { get; set; }
-        public string Color { get; set; }
+        private int _combustible;
 
-        public Automovil()
+        public Automovil(string Marca, string Modelo, string Color)
+            :base(Marca,Modelo,Color, "Vehiculo Terrestre")
         {
             _kilometraje = 0;
-            _tipo = "Vehiculo Terrestre";
+            _combustible = 100;
         }
-
 
         public void Avanzar()
         {
             _kilometraje++;
+            _combustible--;
         }
 
-        public void Parar()
+        public string Parar()
         {
-
+            return "El auto se detuvo";
         }
 
         public string MostrarTableroDeControl()
         {
-            return "El vehiculo tiene un kilometraje de: " + _kilometraje + " KM.";
+            string title = "Tablero de control:\n";
+            string info = " El vehiculo tiene un kilometraje de: " + _kilometraje + " KM. \n Le queda el " + _combustible + "% de combustible.";
+            return title + info;
         }
 
-
-        public void TocarBocina()
+        public string TocarBocina()
         {
+            return "La bocina esta sonando..";
+        }
 
+        public override string MostrarDatos()
+        {
+            string data = "\n AUTO \n{\n Marca: " + Marca + "\n Modelo: " + Modelo + "\n Color: " + Color + " \n}";
+            return data + "\n Datos tecnicos: \n Kilometraje: " + _kilometraje + " Combustible: " + _combustible;
         }
 
         public string EncenderLuces()
